@@ -1,0 +1,22 @@
+# Python virtual environments
+.renv/
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Ray-generated files
+.ray/
+ray_results/
+
+# Environment variables and secrets
+.env
+
+# Editor files
+.vscode/
+.idea/
+
+# Operating-system files
+.DS_Store
