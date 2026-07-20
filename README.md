@@ -1,6 +1,6 @@
 # Ray for AI Lab
 
-Ray is a distributed computing framework that allows Python and AI workloads to run across multiple computers instead of depending on a single machine. It acts as the coordination layer of the AI lab by tracking available CPU and GPU resources, assigning tasks to the Fedora head node or Jetson workers, and collecting the results. This makes it useful for running model experiments in parallel, testing different hyperparameters, distributing inference requests, and learning how multi-node AI systems are managed. Ray does not train models or provide GPU acceleration by itself, but it connects tools such as scikit-learn, PyTorch, TensorFlow, CUDA, and TensorRT into one organized compute environment.
+
 
 A native Ray cluster setup for a private AI learning lab.
 
