@@ -1,5 +1,7 @@
 # Ray for AI Lab
 
+Ray is a distributed computing framework that allows Python and AI workloads to run across multiple computers instead of depending on a single machine. It acts as the coordination layer of the AI lab by tracking available CPU and GPU resources, assigning tasks to the Fedora head node or Jetson workers, and collecting the results. This makes it useful for running model experiments in parallel, testing different hyperparameters, distributing inference requests, and learning how multi-node AI systems are managed. Ray does not train models or provide GPU acceleration by itself, but it connects tools such as scikit-learn, PyTorch, TensorFlow, CUDA, and TensorRT into one organized compute environment.
+
 A native Ray cluster setup for a private AI learning lab.
 
 Ray is a distributed computing framework that allows Python and AI workloads to run across multiple computers instead of depending on a single machine. It acts as the coordination layer of the AI lab by tracking available CPU and GPU resources, assigning tasks to the Fedora head node or Jetson workers, and collecting the results. This makes it useful for running model experiments in parallel, testing different hyperparameters, distributing inference requests, and learning how multi-node AI systems are managed. Ray does not train models or provide GPU acceleration by itself, but it connects tools such as scikit-learn, PyTorch, TensorFlow, CUDA, and TensorRT into one organized compute environment.
@@ -59,13 +61,13 @@ Cloudflare: Separate configuration phase
 | Ray environment Python | Python 3.12.13 |
 | Ray version | 2.56.1 |
 | Fedora hostname | fedora |
-| Fedora LAN IP during setup | 192.168.1.181 |
+| Fedora LAN IP during setup | YOUR_FEDORA_LAN_IP |
 | Ray head port | 6379 |
 | Ray dashboard address | 127.0.0.1 |
 | Ray dashboard port | 8265 |
 | Fedora CPU resources detected by Ray | 8 |
 
-> `192.168.1.181` was the Fedora address during this setup. Check the current LAN address before starting Ray because DHCP may assign a different address later.
+> `YOUR_FEDORA_LAN_IP` was the Fedora address during this setup. Check the current LAN address before starting Ray because DHCP may assign a different address later.
 
 ---
 
@@ -123,7 +125,7 @@ Do not use these addresses as the Ray head address:
 During the tested setup, the correct Fedora LAN address was:
 
 ```text
-192.168.1.181
+YOUR_FEDORA_LAN_IP
 ```
 
 ---
@@ -172,7 +174,7 @@ cd RayforAI-lab
 For the original installation, the local working folder was:
 
 ```text
-/home/sethugopalan/ray-lab
+~/ray-lab
 ```
 
 The GitHub repository can still be named `RayforAI-lab`.
@@ -295,19 +297,19 @@ Tested command:
 
 ```bash
 ray start --head \
-  --node-ip-address=192.168.1.181 \
+  --node-ip-address=YOUR_FEDORA_LAN_IP \
   --port=6379 \
   --dashboard-host=127.0.0.1 \
   --dashboard-port=8265 \
   --disable-usage-stats
 ```
 
-If the Fedora LAN address has changed, replace `192.168.1.181`.
+If the Fedora LAN address has changed, replace `YOUR_FEDORA_LAN_IP`.
 
 Example using a shell variable:
 
 ```bash
-RAY_HEAD_IP=192.168.1.181
+RAY_HEAD_IP=YOUR_FEDORA_LAN_IP
 
 ray start --head \
   --node-ip-address="$RAY_HEAD_IP" \
@@ -331,14 +333,14 @@ ray start --head \
 A successful start should include:
 
 ```text
-Local node IP: 192.168.1.181
+Local node IP: YOUR_FEDORA_LAN_IP
 Ray runtime started.
 ```
 
 Ray will also print the worker connection command:
 
 ```bash
-ray start --address='192.168.1.181:6379'
+ray start --address='YOUR_FEDORA_LAN_IP:6379'
 ```
 
 ---
@@ -424,7 +426,7 @@ Example:
 Cluster resources:
 {
     'CPU': 8.0,
-    'node:192.168.1.181': 1.0,
+    'node:YOUR_FEDORA_LAN_IP': 1.0,
     'node:__internal_head__': 1.0
 }
 ```
@@ -536,7 +538,7 @@ Start Ray again:
 
 ```bash
 ray start --head \
-  --node-ip-address=192.168.1.181 \
+  --node-ip-address=YOUR_FEDORA_LAN_IP \
   --port=6379 \
   --dashboard-host=127.0.0.1 \
   --dashboard-port=8265 \
@@ -566,7 +568,7 @@ hostname
 uname -m
 python3 --version
 ip -br -4 addr
-ping -c 4 192.168.1.181
+ping -c 4 YOUR_FEDORA_LAN_IP
 ```
 
 Expected Jetson architecture:
@@ -585,7 +587,7 @@ The worker should use:
 The future worker connection command is:
 
 ```bash
-ray start --address='192.168.1.181:6379'
+ray start --address='YOUR_FEDORA_LAN_IP:6379'
 ```
 
 After connecting a Jetson, run this on Fedora:
