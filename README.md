@@ -4,9 +4,9 @@
 
 A native Ray cluster setup for a private AI learning lab.
 
-Ray is a distributed computing framework that allows Python and AI workloads to run across multiple computers instead of depending on a single machine. It acts as the coordination layer of the AI lab by tracking available CPU and GPU resources, assigning tasks to the Fedora head node or Jetson workers, and collecting the results. This makes it useful for running model experiments in parallel, testing different hyperparameters, distributing inference requests, and learning how multi-node AI systems are managed. Ray does not train models or provide GPU acceleration by itself, but it connects tools such as scikit-learn, PyTorch, TensorFlow, CUDA, and TensorRT into one organized compute environment.
+Ray is a distributed computing framework that allows Python and AI workloads to run across multiple processes or machines instead of depending on a single system. It acts as the coordination layer of an AI environment by tracking available CPU, GPU, memory, and node resources, scheduling tasks where capacity is available, and returning the results to the application. This makes Ray useful for parallel model experiments, hyperparameter tuning, distributed data processing, batch inference, and learning how scalable AI workloads are managed. Ray does not train models or provide GPU acceleration by itself; it works alongside tools such as scikit-learn, PyTorch, TensorFlow, CUDA, and TensorRT to organize and distribute their workloads.
 
-This repository documents the complete Fedora Ray head-node installation that was tested successfully before adding NVIDIA Jetson worker nodes.
+This repository documents the installation, configuration, and testing of a native Ray head node on Fedora. It records the Python environment, Ray version, startup settings, dashboard configuration, cluster-status checks, and a successful remote-task test so the setup can be reproduced and extended later.
 
 
 
